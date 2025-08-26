@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <title>Balita mula sa Kagawaran ng Agrikultura</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; margin: 0; color: #333; }
+    header { background: #006400; color: white; padding: 1em; text-align: center; }
+    .news-container { max-width: 800px; margin: auto; padding: 1em; }
+    .news-item { background: white; margin-bottom: 1em; padding: 1em; border-left: 5px solid #006400; box-shadow: 0 2px 5px rgba(0,0,0,0.1); animation: fadeIn 0.5s ease-in; }
+    .date { font-size: 0.9em; color: #666; margin-bottom: 0.5em; }
+    .title { font-weight: bold; font-size: 1.2em; margin-bottom: 0.5em; }
+    .summary { font-size: 1em; line-height: 1.4; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <header><h1>📰 Balita mula sa Kagawaran ng Agrikultura</h1></header>
+  <div class="news-container" id="news-container"></div>
+
+  <script>
+    fetch('news.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('news-container');
+        data.forEach(item => {
+          container.innerHTML += `
+            <div class="news-item">
+              <div class="date">${item.petsa}</div>
+              <div class="title">${item.pamagat}</div>
+              <div class="summary">${item.buod}</div>
+            </div>
+          `;
+        });
+      });
+  </script>
+</body>
+</html>
